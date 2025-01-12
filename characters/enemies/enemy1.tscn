@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx8pwtucjpfxg"]
+
+[ext_resource type="Script" path="res://characters/enemies/enemy_1.gd" id="1_3kagb"]
+[ext_resource type="Texture2D" uid="uid://dvd61pemdurf" path="res://assets/sprites/Tiny RPG Character Asset Pack v1.03b -Free Soldier&Orc/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Orc/Orc/Orc-Idle.png" id="1_yqpsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jlwq"]
+size = Vector2(15, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8whrv"]
+atlas = ExtResource("1_yqpsl")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh65x"]
+atlas = ExtResource("1_yqpsl")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8liff"]
+atlas = ExtResource("1_yqpsl")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd3rd"]
+atlas = ExtResource("1_yqpsl")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeyru"]
+atlas = ExtResource("1_yqpsl")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqka3"]
+atlas = ExtResource("1_yqpsl")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dv0ht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8whrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh65x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8liff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd3rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeyru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqka3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_3kagb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_8jlwq")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dv0ht")
+autoplay = "default"
+frame_progress = 0.737607
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(0, 16)
+collision_mask = 3
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(0, -16)
+collision_mask = 3
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(6, 0)
+target_position = Vector2(16, 0)
+collision_mask = 3
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-4, 0)
+target_position = Vector2(-16, 0)
+collision_mask = 3

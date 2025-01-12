@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://dinm3rpc53hyv"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_ybfk1"]
+[ext_resource type="Texture2D" uid="uid://cvt3hsaeuysyd" path="res://assets/sprites/Tiny RPG Character Asset Pack v1.03b -Free Soldier&Orc/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_su2wo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8v3b"]
+atlas = ExtResource("2_su2wo")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn8j6"]
+atlas = ExtResource("2_su2wo")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1gwv"]
+atlas = ExtResource("2_su2wo")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjswi"]
+atlas = ExtResource("2_su2wo")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c33av"]
+atlas = ExtResource("2_su2wo")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0fnu"]
+atlas = ExtResource("2_su2wo")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8vx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8v3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn8j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1gwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjswi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c33av")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0fnu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mhdp"]
+size = Vector2(17, 18)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_ybfk1")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 1.001)
+sprite_frames = SubResource("SpriteFrames_e8vx0")
+autoplay = "default"
+frame_progress = 0.831356
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_6mhdp")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, -1)
+target_position = Vector2(-16, 0)
+collision_mask = 2
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(6, -1)
+target_position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(0, 15)
+collision_mask = 2
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(0, -16)
+collision_mask = 2
