@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dinm3rpc53hyv"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_ybfk1"]
-[ext_resource type="Texture2D" uid="uid://cvt3hsaeuysyd" path="res://assets/sprites/Tiny RPG Character Asset Pack v1.03b -Free Soldier&Orc/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_su2wo"]
+[ext_resource type="Texture2D" uid="uid://cvt3hsaeuysyd" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_su2wo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8v3b"]
 atlas = ExtResource("2_su2wo")
@@ -54,29 +54,30 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mhdp"]
-size = Vector2(17, 18)
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_ybfk1")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1, 1.001)
+position = Vector2(-6.77626e-21, -5.96046e-08)
+scale = Vector2(0.95, 0.89)
 sprite_frames = SubResource("SpriteFrames_e8vx0")
 autoplay = "default"
 frame_progress = 0.831356
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -2)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_6mhdp")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-7, -1)
+position = Vector2(-7, -2)
 target_position = Vector2(-16, 0)
 collision_mask = 2
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(6, -1)
+position = Vector2(7, -2)
 target_position = Vector2(16, 0)
 collision_mask = 2
 
