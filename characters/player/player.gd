@@ -1,7 +1,7 @@
 extends CharacterBody2D;
 
-var movementUD: float = 0;
-var movementLR: float = 0;
+var movementUD: int = 0;
+var movementLR: int = 0;
 
 func _ready() -> void:
 	print(global_position);
@@ -11,23 +11,24 @@ func _physics_process(delta: float) -> void:
 	if GameManager.isPlayerTurn:
 		if Input.is_action_just_pressed("ui_left") and not $RayCastLeft.is_colliding():
 			movementUD = 0;
-			movementLR = -16.0;
+			movementLR = -16;
 			calculate_movement(movementLR, movementUD)
 		elif Input.is_action_just_pressed("ui_right") and not $RayCastRight.is_colliding():
 			movementUD = 0;
-			movementLR = 16.0;
+			movementLR = 16;
 			calculate_movement(movementLR, movementUD)
 		elif Input.is_action_just_pressed("ui_down") and not $RayCastDown.is_colliding():
 			movementLR = 0;
-			movementUD = 16.0;
+			movementUD = 16;
 			calculate_movement(movementLR, movementUD)
 		elif Input.is_action_just_pressed("ui_up") and not $RayCastUp.is_colliding():
 			movementLR = 0;
-			movementUD = -16.0;
+			movementUD = -16;
 			calculate_movement(movementLR, movementUD)
-		move_and_slide()
+	move_and_slide()
+			
 	
-func calculate_movement(movementLR: float, movementUD: float) -> void:
+func calculate_movement(movementLR: int, movementUD: int) -> void:
 	position.x = round(position.x + movementLR);
 	position.y = round(position.y + movementUD);
 	GameManager.isPlayerTurn = false;

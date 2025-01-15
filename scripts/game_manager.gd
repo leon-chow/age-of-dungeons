@@ -1,6 +1,8 @@
 extends Node
 
-var isPlayerTurn = true
-var turnCount = 1
+var isPlayerTurn: bool = true
+var turnCount: int = 1
+var tileSize: int = 16
+
 
 var map = [[]]
