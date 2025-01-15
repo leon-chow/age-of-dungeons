@@ -8,7 +8,6 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	if GameManager.isPlayerTurn:
 		if Input.is_action_just_pressed("ui_left") and not $RayCastLeft.is_colliding():
 			movementUD = 0;
