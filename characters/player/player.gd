@@ -25,11 +25,10 @@ func _physics_process(delta: float) -> void:
 			movementLR = 0;
 			movementUD = -16;
 			calculate_movement(movementLR, movementUD)
-	move_and_slide()
-			
 	
 func calculate_movement(movementLR: int, movementUD: int) -> void:
-	position.x = round(position.x + movementLR);
-	position.y = round(position.y + movementUD);
+	position.x = floor(position.x) + movementLR;
+	position.y = floor(position.y) + movementUD;
+	print("player pos: ", position);
 	GameManager.isPlayerTurn = false;
 	GameManager.turnCount += 1;

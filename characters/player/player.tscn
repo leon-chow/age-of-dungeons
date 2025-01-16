@@ -61,8 +61,8 @@ collision_mask = 2
 script = ExtResource("1_ybfk1")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-6.77626e-21, -5.96046e-08)
-scale = Vector2(0.95, 0.89)
+position = Vector2(0.375002, -0.374999)
+scale = Vector2(0.9525, 0.8725)
 sprite_frames = SubResource("SpriteFrames_e8vx0")
 autoplay = "default"
 frame_progress = 0.831356
@@ -87,6 +87,6 @@ target_position = Vector2(0, 15)
 collision_mask = 2
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 target_position = Vector2(0, -16)
 collision_mask = 2
