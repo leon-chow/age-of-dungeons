@@ -89,17 +89,17 @@ position = Vector2(-7, -1)
 target_position = Vector2(-16, 0)
 
 [node name="RayCastUpRight" type="RayCast2D" parent="."]
-position = Vector2(9, -9)
+position = Vector2(8, -8)
 target_position = Vector2(16, -16)
 
 [node name="RayCastUpLeft" type="RayCast2D" parent="."]
-position = Vector2(-8, -9)
+position = Vector2(-7, -8)
 target_position = Vector2(-16, -16)
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
-position = Vector2(-8, 7)
+position = Vector2(-7, 6)
 target_position = Vector2(-16, 16)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
-position = Vector2(9, 7)
+position = Vector2(8, 6)
 target_position = Vector2(16, 16)

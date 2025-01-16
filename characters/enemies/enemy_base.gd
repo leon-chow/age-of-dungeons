@@ -12,6 +12,12 @@ var state = "patrol";
 var movementUD: int = 0;
 var movementLR: int = 0;
 
+var hp: int = 100;
+var atk: int = 5;
+var def: int = 5;
+var matk: int = 5;
+var mdef: int = 5;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -68,7 +74,7 @@ func isAdjacent(vectorDiff: Vector2) -> bool:
 func chase() -> void:
 	var vectorDiff = Vector2(player.global_position - self.global_position)
 	if isAdjacent(vectorDiff):
-		attack()
+		attack();
 	else:
 		print(vectorDiff);
 		print($RayCastUpLeft.is_colliding());
@@ -94,4 +100,7 @@ func sleep() -> void:
 	
 func attack() -> void:
 	print("attacking...");
+	var damage = self.atk - player.def;
+	player.
+	player.hp -= damage;
 	GameManager.isPlayerTurn = true;
