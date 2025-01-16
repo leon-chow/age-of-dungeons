@@ -67,19 +67,26 @@ func isAdjacent(vectorDiff: Vector2) -> bool:
 	
 func chase() -> void:
 	var vectorDiff = Vector2(player.global_position - self.global_position)
-	print(vectorDiff)
 	if isAdjacent(vectorDiff):
 		attack()
 	else:
-		if not $RayCastLeft.is_colliding() and vectorDiff.x < GameManager.tileSize:
+		print(vectorDiff);
+		print($RayCastUpLeft.is_colliding());
+		if vectorDiff.x >= 0 and vectorDiff.x <= 1:
+			movementLR = 0;
+		elif not $RayCastLeft.is_colliding() and vectorDiff.x < 0:
 			movementLR = -16;
-		elif not $RayCastRight.is_colliding() and vectorDiff.x > GameManager.tileSize:
+		elif not $RayCastRight.is_colliding() and vectorDiff.x > 0:
 			movementLR = 16;
-		if not $RayCastDown.is_colliding() and vectorDiff.y > GameManager.tileSize:
+		if vectorDiff.y >= 0 and vectorDiff.y <= 1:
+			movementUD = 0;
+		elif not $RayCastDown.is_colliding() and vectorDiff.y > 0:
 			movementUD = 16;
-		elif not $RayCastUp.is_colliding() and vectorDiff.y < GameManager.tileSize:
+		elif not $RayCastUp.is_colliding() and vectorDiff.y < 0:
 			movementUD = -16;
+		print("Enemy will move ", movementLR, " spots horizontally and ", movementUD, " spots vertically");
 		calculate_movement(movementLR, movementUD)
+		print("enemy pos: ", self.global_position)
 		GameManager.isPlayerTurn = true;
 	
 func sleep() -> void:

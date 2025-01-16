@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 			movementLR = 0;
 			movementUD = -16;
 			calculate_movement(movementLR, movementUD)
-	
+			
 func calculate_movement(movementLR: int, movementUD: int) -> void:
 	position.x = floor(position.x) + movementLR;
 	position.y = floor(position.y) + movementUD;

@@ -66,7 +66,7 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_8jlwq")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2.98023e-08, -1)
+position = Vector2(0, -1)
 scale = Vector2(0.99, 0.99)
 sprite_frames = SubResource("SpriteFrames_dv0ht")
 autoplay = "default"
@@ -89,17 +89,17 @@ position = Vector2(-7, -1)
 target_position = Vector2(-16, 0)
 
 [node name="RayCastUpRight" type="RayCast2D" parent="."]
-position = Vector2(8, -7)
+position = Vector2(9, -9)
 target_position = Vector2(16, -16)
 
 [node name="RayCastUpLeft" type="RayCast2D" parent="."]
-position = Vector2(-6, -7)
+position = Vector2(-8, -9)
 target_position = Vector2(-16, -16)
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
-position = Vector2(-6, 6)
+position = Vector2(-8, 7)
 target_position = Vector2(-16, 16)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
-position = Vector2(7, 6)
+position = Vector2(9, 7)
 target_position = Vector2(16, 16)
