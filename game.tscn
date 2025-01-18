@@ -193,5 +193,10 @@ limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[node name="Enemy" parent="." instance=ExtResource("4_t8o4l")]
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_t8o4l")]
 position = Vector2(8, 170)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_t8o4l")]
+position = Vector2(40, 170)

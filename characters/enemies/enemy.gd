@@ -2,15 +2,12 @@ extends CharacterBody2D;
 
 class_name Enemy;
 
-@onready var player: CharacterBody2D = $"../Player"
+@onready var player: CharacterBody2D = $"../../Player"
 
 var sleepTimer = 30
 var vectorDiff = Vector2(0,0)
 var isDetectingPlayer: bool = false;
 var state = "patrol";
-
-var movementUD: int = 0;
-var movementLR: int = 0;
 
 var hp: int
 var atk: int
@@ -26,7 +23,7 @@ func _ready() -> void:
 	state = "chase";
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (hp <= 0):
 		animation.play("death");
 		await get_tree().create_timer(1.0).timeout;
@@ -41,10 +38,8 @@ func _process(delta: float) -> void:
 				4. On player detection lost, set the enemy back to patrol
 		
 		"""
-		if state == "patrol":
-			patrol();
 		if state == "chase":
-			chase();
+			chase(0, 0);
 		elif state == "sleep":
 			sleep();
 
@@ -53,35 +48,17 @@ func calculate_movement(movementLR: int, movementUD: int) -> void:
 	position.y = floor(position.y) + movementUD;
 	print("enemy pos: ", position);
 	GameManager.turnCount += 1;
-
-func patrol() -> void:		
-	var movementUD: int = 0;
-	var movementLR: int = 0;
-	if not $RayCastLeft.is_colliding():
-		movementLR = -16;
-		calculate_movement(movementLR, movementUD);
-	elif not $RayCastRight.is_colliding():
-		movementLR = 16;
-		calculate_movement(movementLR, movementUD);
-	elif not $RayCastDown.is_colliding():
-		movementUD = 16;
-		calculate_movement(movementLR, movementUD);
-	elif not $RayCastUp.is_colliding():
-		movementUD = -16;
-		calculate_movement(movementLR, movementUD);
-	else:
-		state = "chase";
+	GameManager.isPlayerTurn = true;
 		
 func isAdjacent(vectorDiff: Vector2) -> bool:
 	return snappedi(abs(vectorDiff.x), GameManager.tileSize) <= GameManager.tileSize and snappedi(abs(vectorDiff.y), GameManager.tileSize) <= GameManager.tileSize;
 	
-func chase() -> void:
+func chase(movementLR: int, movementUD: int) -> void:
 	var vectorDiff = Vector2(player.global_position - self.global_position)
+	print("chasing...")
 	if isAdjacent(vectorDiff):
 		attack(player);
 	else:
-		print(vectorDiff);
-		print($RayCastUpLeft.is_colliding());
 		if vectorDiff.x >= 0 and vectorDiff.x <= 1:
 			movementLR = 0;
 		elif not $RayCastLeft.is_colliding() and vectorDiff.x < 0:
@@ -94,7 +71,6 @@ func chase() -> void:
 			movementUD = 16;
 		elif not $RayCastUp.is_colliding() and vectorDiff.y < 0:
 			movementUD = -16;
-		print("Enemy will move ", movementLR, " spots horizontally and ", movementUD, " spots vertically");
 		calculate_movement(movementLR, movementUD)
 		print("enemy pos: ", self.global_position)
 	
@@ -102,7 +78,8 @@ func sleep() -> void:
 	pass
 	
 func attack(player) -> void:
-	print("you are attacking...");
-	var damage = player.atk;
+	print("enemy attacking...");
+	var damage = self.atk;
 	player.hp -= damage;
 	print(player.hp);
+	GameManager.isPlayerTurn = true;
