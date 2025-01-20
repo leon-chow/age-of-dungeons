@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvd61pemdurf" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Orc/Orc/Orc-Idle.png" id="1_yqpsl"]
 [ext_resource type="Texture2D" uid="uid://utla00eyamns" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Orc/Orc/Orc-Death.png" id="2_7xn75"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jlwq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqm50"]
 size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rugny"]
@@ -101,51 +101,52 @@ script = ExtResource("1_3kagb")
 metadata/_edit_horizontal_guides_ = [-64.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -1)
-shape = SubResource("RectangleShape2D_8jlwq")
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_qqm50")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(-1, -2)
 scale = Vector2(0.985, 0.985)
 sprite_frames = SubResource("SpriteFrames_dv0ht")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.891112
-
-[node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(1, 6)
-target_position = Vector2(0, 16)
-
-[node name="RayCastUp" type="RayCast2D" parent="."]
-position = Vector2(1, -9)
-target_position = Vector2(0, -16)
-collision_mask = 2
-
-[node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(8, -1)
-target_position = Vector2(16, 0)
-
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-7, -1)
-target_position = Vector2(-16, 0)
-collision_mask = 3
 
 [node name="RayCastUpRight" type="RayCast2D" parent="."]
-position = Vector2(8, -8)
+position = Vector2(6, -7)
 target_position = Vector2(16, -16)
 collision_mask = 3
 
 [node name="RayCastUpLeft" type="RayCast2D" parent="."]
-position = Vector2(-6, -7)
+position = Vector2(-5, -7)
 target_position = Vector2(-16, -16)
 collision_mask = 3
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
-position = Vector2(-6, 5)
+position = Vector2(-4, 3)
 target_position = Vector2(-16, 16)
 collision_mask = 3
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
-position = Vector2(8, 6)
+position = Vector2(6, 3)
 target_position = Vector2(16, 16)
+collision_mask = 3
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, -2)
+target_position = Vector2(-16, 0)
+collision_mask = 3
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(7, -2)
+target_position = Vector2(16, 0)
+collision_mask = 3
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(0, 15)
+collision_mask = 3
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+position = Vector2(0, -9)
+target_position = Vector2(0, -16)
 collision_mask = 3
