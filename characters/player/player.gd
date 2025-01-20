@@ -4,18 +4,23 @@ extends CharacterBody2D;
 
 @onready var raycasts: Array = [$RayCastLeft, $RayCastUp, $RayCastRight, $RayCastDown];
 
+signal player_turn_ended
+
 var directions = ["ui_left", "ui_up", "ui_right", "ui_down"];
 
 var movementUD: int = 0;
 var movementLR: int = 0;
 
-var hp: int = 20;
+var vectorMovement = Vector2.ZERO
+
+var hp: int = 100;
 var atk: int = 1;
 var def: int = 1;
 var matk: int = 1;
 var mdef: int = 1;
 
 func _ready() -> void:
+	player_turn_ended.connect(end_turn)
 	print("player loaded");
 
 func _physics_process(delta: float) -> void:
@@ -28,33 +33,29 @@ func _physics_process(delta: float) -> void:
 	if GameManager.isPlayerTurn:
 		if Input.is_action_just_pressed("ui_left"):
 			if not $RayCastLeft.is_colliding():
-				movementUD = 0;
-				movementLR = -16;
-				calculate_movement(movementLR, movementUD);
+				vectorMovement = Vector2(-GameManager.tileSize, 0);
+				calculate_movement(vectorMovement, delta);
 			else:
 				if $RayCastLeft.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastLeft.get_collider());
 		elif Input.is_action_just_pressed("ui_right"): 
 			if not $RayCastRight.is_colliding():
-				movementUD = 0;
-				movementLR = 16;
-				calculate_movement(movementLR, movementUD);
+				vectorMovement = Vector2(GameManager.tileSize, 0);
+				calculate_movement(vectorMovement, delta);
 			else:
 				if $RayCastRight.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastRight.get_collider())
 		elif Input.is_action_just_pressed("ui_down"):
 			if not $RayCastDown.is_colliding():
-				movementLR = 0;
-				movementUD = 16;
-				calculate_movement(movementLR, movementUD);
+				vectorMovement = Vector2(0, GameManager.tileSize);
+				calculate_movement(vectorMovement, delta);
 			else:
 				if $RayCastDown.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastDown.get_collider())
 		elif Input.is_action_just_pressed("ui_up"):
 			if not $RayCastUp.is_colliding():
-				movementLR = 0;
-				movementUD = -16;
-				calculate_movement(movementLR, movementUD);
+				vectorMovement = Vector2(0, -GameManager.tileSize);
+				calculate_movement(vectorMovement, delta);
 			else:
 				if $RayCastUp.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastUp.get_collider());
@@ -65,15 +66,16 @@ func play_idle():
 func hurt(): 
 	animation.play("hurt");
 			
-func calculate_movement(movementLR: int, movementUD: int) -> void:
-	position.x = floor(position.x) + movementLR;
-	position.y = floor(position.y) + movementUD;
+func calculate_movement(vectorMovement, delta: float) -> void:
+	position = round(position + vectorMovement);
 	print("player pos: ", position);
 	GameManager.turnCount += 1;
+	move_and_slide();
 	end_turn();
 	
 func end_turn():
 	GameManager.isPlayerTurn = false;
+	player_turn_ended.emit(false);
 
 func attack(enemy) -> void:
 	print("you are attacking...");

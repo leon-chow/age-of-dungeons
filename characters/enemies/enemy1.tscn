@@ -97,7 +97,6 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 2
 script = ExtResource("1_3kagb")
 metadata/_edit_horizontal_guides_ = [-64.0]
 
@@ -107,7 +106,7 @@ shape = SubResource("RectangleShape2D_8jlwq")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(0.99, 0.99)
+scale = Vector2(0.985, 0.985)
 sprite_frames = SubResource("SpriteFrames_dv0ht")
 animation = &"death"
 autoplay = "idle"
@@ -118,29 +117,35 @@ position = Vector2(1, 6)
 target_position = Vector2(0, 16)
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
-position = Vector2(1, -8)
+position = Vector2(1, -9)
 target_position = Vector2(0, -16)
+collision_mask = 2
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(7, -1)
+position = Vector2(8, -1)
 target_position = Vector2(16, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-7, -1)
 target_position = Vector2(-16, 0)
+collision_mask = 3
 
 [node name="RayCastUpRight" type="RayCast2D" parent="."]
 position = Vector2(8, -8)
 target_position = Vector2(16, -16)
+collision_mask = 3
 
 [node name="RayCastUpLeft" type="RayCast2D" parent="."]
-position = Vector2(-7, -8)
+position = Vector2(-6, -7)
 target_position = Vector2(-16, -16)
+collision_mask = 3
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
-position = Vector2(-7, 6)
+position = Vector2(-6, 5)
 target_position = Vector2(-16, 16)
+collision_mask = 3
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
 position = Vector2(8, 6)
 target_position = Vector2(16, 16)
+collision_mask = 3
