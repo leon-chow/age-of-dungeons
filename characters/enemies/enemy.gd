@@ -54,6 +54,10 @@ func _physics_process(delta: float) -> void:
 
 func calculate_movement(vectorMovement) -> void:
 	position = round(position + vectorMovement);
+	if vectorMovement.x == GameManager.tileSize:
+		animation.flip_h = false;
+	elif vectorMovement.x == -GameManager.tileSize:
+		animation.flip_h = true;
 	GameManager.turnCount += 1;
 	move_and_slide();
 	end_turn();
@@ -86,6 +90,7 @@ func sleep() -> void:
 	pass
 	
 func attack(player) -> void:
+	animation.play("attack")
 	print(name, " is attacking...");
 	var damage = self.atk;
 	player.hp -= damage;

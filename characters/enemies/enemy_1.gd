@@ -12,4 +12,6 @@ func _ready() -> void:
 	self.mdef = 1;
 	self.speed = 5;
 	super();
-	
+
+func _on_play_idle() -> void:
+	animation.play("idle")

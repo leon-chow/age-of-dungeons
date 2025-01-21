@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	if GameManager.isPlayerTurn:
 		if Input.is_action_just_pressed("ui_left"):
+			animation.flip_h = true;
 			if not $RayCastLeft.is_colliding():
 				vectorMovement = Vector2(-GameManager.tileSize, 0);
 				calculate_movement(vectorMovement, delta);
@@ -43,6 +44,7 @@ func _physics_process(delta: float) -> void:
 				if $RayCastLeft.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastLeft.get_collider());
 		elif Input.is_action_just_pressed("ui_right"): 
+			animation.flip_h = false;
 			if not $RayCastRight.is_colliding():
 				vectorMovement = Vector2(GameManager.tileSize, 0);
 				calculate_movement(vectorMovement, delta);
@@ -81,6 +83,7 @@ func end_turn():
 	player_turn_ended.emit(false);
 
 func attack(enemy) -> void:
+	animation.play("attack")
 	print("you are attacking ", enemy.name);
 	var damage = enemy.atk;
 	enemy.hp -= damage;
