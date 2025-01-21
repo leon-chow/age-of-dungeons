@@ -5,35 +5,43 @@ class_name Enemy;
 @onready var player: CharacterBody2D = $"../../Player"
 
 var sleepTimer = 30
-var vectorDiff = Vector2(0,0)
 var isDetectingPlayer: bool = false;
 var state = "patrol";
 var isEnemyTurn: bool = false;
 signal enemy_turn_ended
 
-var hp: int
-var atk: int
-var def: int
-var matk: int
-var mdef: int
-var speed: int
+var level: int;
+var hp: int;
+var atk: int;
+var def: int;
+var matk: int;
+var mdef: int;
+var speed: int;
+var enemyExp: int;
 
-@onready var animation: AnimatedSprite2D = $Animation
-@onready var health_bar: ProgressBar = $HealthBar
+@onready var animation: AnimatedSprite2D = $Animation;
+@onready var health_bar: ProgressBar = $HealthBar;
+
+signal on_death(enemy);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	on_death.connect(_on_death)
 	health_bar.value = hp;
 	health_bar.max_value = hp;
 	print("enemy ready");
-	state = "chase";
+	state = "chase";	
+
+func _on_death():
+	animation.play("death");
+	on_death.emit(self);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	health_bar.value = hp;
 	if (hp <= 0):
-		animation.play("death");
 		await get_tree().create_timer(0.2).timeout;
+		_on_death();
 		queue_free();
 		print(self.name, "is dying...");
 	elif not GameManager.isPlayerTurn and isEnemyTurn:
@@ -69,7 +77,7 @@ func chase() -> void:
 	var vectorDiff = Vector2(player.global_position - self.global_position)
 	var vectorMovement = Vector2.ZERO;
 	if isAdjacent(vectorDiff):
-		attack(player);
+		attack();
 	else:
 		# TODO: Figure out how to stop clipping, which may be taken care of by path finding, and then fix enemies from colliding diagonally with each other
 		if vectorDiff.x >= 0 and vectorDiff.x <= 1:
@@ -89,12 +97,13 @@ func chase() -> void:
 func sleep() -> void:
 	pass
 	
-func attack(player) -> void:
+func attack() -> void:
 	animation.play("attack")
 	print(name, " is attacking...");
 	var damage = self.atk;
 	player.hp -= damage;
 	print("player HP: ", player.hp);
+	player.hurt();
 	end_turn();
 	
 func end_turn():
