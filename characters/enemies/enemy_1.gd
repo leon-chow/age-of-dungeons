@@ -10,6 +10,6 @@ func _ready() -> void:
 	self.def = 1;
 	self.matk = 1;
 	self.mdef = 1;
-	self.turnOrder = 1;
+	self.speed = 5;
 	super();
 	

@@ -70,7 +70,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"death",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -108,7 +108,7 @@ shape = SubResource("RectangleShape2D_qqm50")
 position = Vector2(-1, -2)
 scale = Vector2(0.985, 0.985)
 sprite_frames = SubResource("SpriteFrames_dv0ht")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="RayCastUpRight" type="RayCast2D" parent="."]

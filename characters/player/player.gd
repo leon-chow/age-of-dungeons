@@ -68,7 +68,6 @@ func hurt():
 			
 func calculate_movement(vectorMovement, delta: float) -> void:
 	position = round(position + vectorMovement);
-	print("player pos: ", position);
 	GameManager.turnCount += 1;
 	move_and_slide();
 	end_turn();
@@ -78,8 +77,8 @@ func end_turn():
 	player_turn_ended.emit(false);
 
 func attack(enemy) -> void:
-	print("you are attacking...");
+	print("you are attacking ", enemy.name);
 	var damage = enemy.atk;
 	enemy.hp -= damage;
-	print(enemy.hp);
+	print(enemy.name, " HP: ", enemy.hp);
 	end_turn();

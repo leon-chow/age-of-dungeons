@@ -16,7 +16,7 @@ var atk: int
 var def: int
 var matk: int
 var mdef: int
-var turnOrder: int
+var speed: int
 
 @onready var animation: AnimatedSprite2D = $Animation
 
@@ -29,11 +29,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if (hp <= 0):
 		animation.play("death");
-		print("enemy died...");
-		await get_tree().create_timer(1.0).timeout;
-		queue_free()
-		GameManager.numOfEnemies -= 1;
+		await get_tree().create_timer(0.2).timeout;
+		queue_free();
+		print(self.name, "is dying...");
 	elif not GameManager.isPlayerTurn and isEnemyTurn:
+		print(name, "'s turn");
 		""" 
 			Movement will be based on these things:
 				1. On spawn, make the enemy asleep
@@ -49,13 +49,10 @@ func _physics_process(delta: float) -> void:
 			sleep();
 
 func calculate_movement(vectorMovement) -> void:
-	print(vectorMovement);
-	print("(before) enemy pos: ", position);
 	position = round(position + vectorMovement);
-	print("(after) enemy pos: ", position);
 	GameManager.turnCount += 1;
-	end_turn();
 	move_and_slide();
+	end_turn();
 		
 func isAdjacent(vectorDiff: Vector2) -> bool:
 	return snappedi(abs(vectorDiff.x), GameManager.tileSize) <= GameManager.tileSize and snappedi(abs(vectorDiff.y), GameManager.tileSize) <= GameManager.tileSize;
@@ -63,32 +60,32 @@ func isAdjacent(vectorDiff: Vector2) -> bool:
 func chase() -> void:
 	var vectorDiff = Vector2(player.global_position - self.global_position)
 	var vectorMovement = Vector2.ZERO;
-	print("chasing...")
 	if isAdjacent(vectorDiff):
 		attack(player);
 	else:
+		# TODO: Figure out how to stop clipping, which may be taken care of by path finding, and then fix enemies from colliding diagonally with each other
 		if vectorDiff.x >= 0 and vectorDiff.x <= 1:
 			vectorMovement.x = 0;
 		elif not $RayCastLeft.is_colliding() and vectorDiff.x < 0:
-			vectorMovement.x = -16;
+			vectorMovement.x = -GameManager.tileSize;
 		elif not $RayCastRight.is_colliding() and vectorDiff.x > 0:
-			vectorMovement.x = 16;
+			vectorMovement.x = GameManager.tileSize;
 		if vectorDiff.y >= 0 and vectorDiff.y <= 1:
 			vectorMovement.y = 0;
 		elif not $RayCastDown.is_colliding() and vectorDiff.y > 0:
-			vectorMovement.y = 16;
+			vectorMovement.y = GameManager.tileSize;
 		elif not $RayCastUp.is_colliding() and vectorDiff.y < 0:
-			vectorMovement.y = -16;
+			vectorMovement.y = -GameManager.tileSize;
 		calculate_movement(vectorMovement);
 	
 func sleep() -> void:
 	pass
 	
 func attack(player) -> void:
-	print("enemy attacking...");
+	print(name, " is attacking...");
 	var damage = self.atk;
 	player.hp -= damage;
-	print(player.hp);
+	print("player HP: ", player.hp);
 	end_turn();
 	
 func end_turn():
