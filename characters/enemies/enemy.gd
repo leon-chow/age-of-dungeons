@@ -19,14 +19,18 @@ var mdef: int
 var speed: int
 
 @onready var animation: AnimatedSprite2D = $Animation
+@onready var health_bar: ProgressBar = $HealthBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health_bar.value = hp;
+	health_bar.max_value = hp;
 	print("enemy ready");
 	state = "chase";
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	health_bar.value = hp;
 	if (hp <= 0):
 		animation.play("death");
 		await get_tree().create_timer(0.2).timeout;

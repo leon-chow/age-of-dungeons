@@ -1,9 +1,34 @@
-[gd_scene load_steps=21 format=3 uid="uid://dinm3rpc53hyv"]
+[gd_scene load_steps=30 format=3 uid="uid://dinm3rpc53hyv"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_ybfk1"]
+[ext_resource type="Texture2D" uid="uid://c18vb5amv23xp" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Attack01.png" id="2_depnl"]
 [ext_resource type="Texture2D" uid="uid://qtrj8e6kect4" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="2_ng5ho"]
 [ext_resource type="Texture2D" uid="uid://cvt3hsaeuysyd" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_su2wo"]
 [ext_resource type="Texture2D" uid="uid://b1b3whq80uetf" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Hurt.png" id="3_60uyg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqpf2"]
+atlas = ExtResource("2_depnl")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtfmb"]
+atlas = ExtResource("2_depnl")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usob8"]
+atlas = ExtResource("2_depnl")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d85y5"]
+atlas = ExtResource("2_depnl")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oelfi"]
+atlas = ExtResource("2_depnl")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gnn6"]
+atlas = ExtResource("2_depnl")
+region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2ghe"]
 atlas = ExtResource("2_ng5ho")
@@ -63,6 +88,29 @@ region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e8vx0"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqpf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtfmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usob8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d85y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oelfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gnn6")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2ghe")
@@ -151,6 +199,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mhdp"]
 size = Vector2(16, 16)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lu6u"]
+bg_color = Color(0.505344, 0.505344, 0.505344, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ajd6"]
+bg_color = Color(1, 0.278431, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_ybfk1")
@@ -159,8 +221,9 @@ script = ExtResource("1_ybfk1")
 position = Vector2(0.375002, -0.374999)
 scale = Vector2(0.9525, 0.8725)
 sprite_frames = SubResource("SpriteFrames_e8vx0")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame_progress = 0.26443
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -185,5 +248,15 @@ collision_mask = 3
 position = Vector2(0, -9)
 target_position = Vector2(0, -16)
 collision_mask = 3
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -17.0
+offset_top = -15.0
+offset_right = 17.0
+offset_bottom = -11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6lu6u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ajd6")
+value = 100.0
+show_percentage = false
 
 [connection signal="animation_finished" from="Animation" to="." method="play_idle"]

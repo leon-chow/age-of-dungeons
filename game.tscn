@@ -210,4 +210,4 @@ position = Vector2(24, 170)
 [connection signal="enemy_turn_ended" from="Enemies/Enemy2" to="GameManager" method="_on_enemy_turn_ended"]
 [connection signal="tree_exiting" from="Enemies/Enemy2" to="GameManager" method="_on_enemy_killed"]
 [connection signal="enemy_turn_ended" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_turn_ended"]
-[connection signal="tree_exited" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_killed"]
+[connection signal="tree_exiting" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_killed"]

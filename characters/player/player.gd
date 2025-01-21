@@ -3,6 +3,7 @@ extends CharacterBody2D;
 @onready var animation: AnimatedSprite2D = $Animation
 
 @onready var raycasts: Array = [$RayCastLeft, $RayCastUp, $RayCastRight, $RayCastDown];
+@onready var health_bar: ProgressBar = $HealthBar
 
 signal player_turn_ended
 
@@ -20,10 +21,13 @@ var matk: int = 1;
 var mdef: int = 1;
 
 func _ready() -> void:
+	health_bar.max_value = hp;
+	health_bar.value = hp;
 	player_turn_ended.connect(end_turn)
 	print("player loaded");
 
 func _physics_process(delta: float) -> void:
+	health_bar.value = hp;
 	if hp <= 0:
 		animation.play("death");
 		await get_tree().create_timer(3.0).timeout;
