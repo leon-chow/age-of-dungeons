@@ -99,8 +99,8 @@ func sleep() -> void:
 func attack() -> void:
 	animation.play("attack")
 	print(name, " is attacking...");
-	var damage = self.atk;
-	player.hp -= damage;
+	var damage = self.atk - player.def;
+	player.hp -= max(damage, 1);
 	print("player HP: ", player.hp);
 	player.hurt();
 	end_turn();

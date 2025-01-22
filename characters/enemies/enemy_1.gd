@@ -7,10 +7,10 @@ var movementLR: int = 0;
 func _ready() -> void:
 	self.level = 1;
 	self.hp = 10;
-	self.atk = 4;
-	self.def = 1;
-	self.matk = 1;
-	self.mdef = 1;
+	self.atk = 5;
+	self.def = 2;
+	self.matk = 2;
+	self.mdef = 2;
 	self.speed = 5;
 	self.enemyExp = 10;
 	super();

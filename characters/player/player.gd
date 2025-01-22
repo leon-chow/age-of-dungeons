@@ -19,10 +19,10 @@ var level: int = 1;
 var energy: int = 100;
 var hp: int = 100;
 var maxHp: int = 100;
-var atk: int = 1;
-var def: int = 1;
-var matk: int = 1;
-var mdef: int = 1;
+var atk: int = 5;
+var def: int = 2;
+var matk: int = 5;
+var mdef: int = 2;
 var playerExp: int = 0;
 var expRequiredToLevel: int = 20;
 
@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 					attack($RayCastUp.get_collider());
 					
 func _on_level_up():
+	var levelUpAnimation = create_tween();
 	improve_stats();
 	self.playerExp -= expRequiredToLevel;
 	level += 1;
@@ -82,6 +83,7 @@ func _on_level_up():
 	
 func improve_stats():
 	maxHp += 20;
+	hp += 20;
 	atk += 5;
 	def += 5;
 	matk += 5;
@@ -113,7 +115,7 @@ func end_turn():
 func attack(enemy) -> void:
 	animation.play("attack")
 	print("you are attacking ", enemy.name);
-	var damage = enemy.atk;
-	enemy.hp -= damage;
+	var damage = atk - enemy.def;
+	enemy.hp -= max(damage, 1);
 	print(enemy.name, " HP: ", enemy.hp);
 	end_turn();
