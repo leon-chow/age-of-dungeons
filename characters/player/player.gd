@@ -4,6 +4,7 @@ extends CharacterBody2D;
 
 @onready var raycasts: Array = [$RayCastLeft, $RayCastUp, $RayCastRight, $RayCastDown];
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var hp_value: RichTextLabel = $HPValue
 
 signal player_turn_ended
 
@@ -14,20 +15,27 @@ var movementLR: int = 0;
 
 var vectorMovement = Vector2.ZERO
 
+var level: int = 1;
+var energy: int = 100;
 var hp: int = 100;
+var maxHp: int = 100;
 var atk: int = 1;
 var def: int = 1;
 var matk: int = 1;
 var mdef: int = 1;
+var playerExp: int = 0;
+var expRequiredToLevel: int = 20;
 
 func _ready() -> void:
 	health_bar.max_value = hp;
 	health_bar.value = hp;
+	hp_value.text = str(health_bar.value) + "/" + str(maxHp);
 	player_turn_ended.connect(end_turn)
 	print("player loaded");
 
 func _physics_process(delta: float) -> void:
 	health_bar.value = hp;
+	hp_value.text = str(health_bar.value) + "/" + str(maxHp);
 	if hp <= 0:
 		animation.play("death");
 		await get_tree().create_timer(3.0).timeout;
@@ -65,13 +73,33 @@ func _physics_process(delta: float) -> void:
 			else:
 				if $RayCastUp.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastUp.get_collider());
-
+					
+func _on_level_up():
+	improve_stats();
+	self.playerExp -= expRequiredToLevel;
+	level += 1;
+	expRequiredToLevel = level * 20;
+	
+func improve_stats():
+	maxHp += 20;
+	atk += 5;
+	def += 5;
+	matk += 5;
+	mdef += 5;
 
 func play_idle():
 	animation.play("idle");	
+
 func hurt(): 
-	animation.play("hurt");
-			
+	if animation.animation == "idle":
+		animation.play("hurt");
+	
+func gain_exp(expGained):
+	playerExp += expGained;
+	while (playerExp >= expRequiredToLevel):
+		print("Leveled up!")
+		_on_level_up();
+		
 func calculate_movement(vectorMovement, delta: float) -> void:
 	position = round(position + vectorMovement);
 	GameManager.turnCount += 1;

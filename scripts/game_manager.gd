@@ -1,6 +1,7 @@
 extends Node
 
 var isPlayerTurn = true;
+@onready var player: CharacterBody2D = $"../Player"
 
 var turnCount: int = 1
 var tileSize: int = 16
@@ -14,34 +15,18 @@ func sort_speed(enemyA: Enemy, enemyB: Enemy) -> bool:
 	return enemyA.speed > enemyB.speed;
 
 func _on_player_turn_ended(isPlayerTurn) -> void:
-	print("Enemy turn")
+	enemyTurnOrder = [];
 	if not isPlayerTurn:
 		for enemy: Enemy in get_parent().get_node("Enemies").get_children():
 			enemyTurnOrder.append(enemy)
 			
 		enemyTurnOrder.sort_custom(sort_speed);
 		
-		if enemyTurnOrder.size() > 0 and is_instance_valid(enemyTurnOrder[0]):
-			enemyTurnOrder[0].isEnemyTurn = true;
-		else:
-			GameManager.isPlayerTurn = true
-# TODO: Revisit this, need a way to keep track of all turns and then need a loader to perform turns one at a time instead of all at once
-func _on_enemy_killed() -> void:
-	print("on enemy death")
-	enemyTurnOrder = [];
-	for enemy: Enemy in get_parent().get_node("Enemies").get_children():
-		print("after enemy killed", enemy);
-		enemyTurnOrder.append(enemy)
-	enemyTurnOrder.sort_custom(sort_speed);
+		for enemy: Enemy in enemyTurnOrder:
+			if is_instance_valid(enemy):
+				enemy.act()
 		
-	if enemyTurnOrder.size() > 0:
 		GameManager.isPlayerTurn = true
-
-func _on_enemy_turn_ended() -> void:
-	enemyTurnOrder[0].isEnemyTurn = false;
-	enemyTurnOrder.pop_front()
-	if enemyTurnOrder.size() > 0 and is_instance_valid(enemyTurnOrder[0]):
-		enemyTurnOrder[0].isEnemyTurn = true;
-	else:
-		print("Player's turn!");
-		GameManager.isPlayerTurn = true;
+			
+func _on_enemy_killed(enemy: Enemy) -> void:
+	player.gain_exp(enemy.enemyExp);

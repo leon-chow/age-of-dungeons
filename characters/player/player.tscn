@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://dinm3rpc53hyv"]
+[gd_scene load_steps=31 format=3 uid="uid://dinm3rpc53hyv"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_ybfk1"]
 [ext_resource type="Texture2D" uid="uid://c18vb5amv23xp" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Attack01.png" id="2_depnl"]
 [ext_resource type="Texture2D" uid="uid://qtrj8e6kect4" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="2_ng5ho"]
 [ext_resource type="Texture2D" uid="uid://cvt3hsaeuysyd" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_su2wo"]
 [ext_resource type="Texture2D" uid="uid://b1b3whq80uetf" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier-Hurt.png" id="3_60uyg"]
+[ext_resource type="FontFile" uid="uid://c2op8js4gbyyw" path="res://assets/fonts/PixelOperator8.ttf" id="6_vrklu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqpf2"]
 atlas = ExtResource("2_depnl")
@@ -221,10 +222,8 @@ script = ExtResource("1_ybfk1")
 position = Vector2(0.375002, -0.374999)
 scale = Vector2(0.9525, 0.8725)
 sprite_frames = SubResource("SpriteFrames_e8vx0")
-animation = &"attack"
+animation = &"hurt"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -259,5 +258,16 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6lu6u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ajd6")
 value = 100.0
 show_percentage = false
+
+[node name="HPValue" type="RichTextLabel" parent="."]
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = -15.0
+theme_override_fonts/normal_font = ExtResource("6_vrklu")
+theme_override_font_sizes/normal_font_size = 8
+text = "health: "
+fit_content = true
+autowrap_mode = 0
 
 [connection signal="animation_finished" from="Animation" to="." method="play_idle"]
