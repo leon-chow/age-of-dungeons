@@ -29,13 +29,13 @@ var expRequiredToLevel: int = 20;
 func _ready() -> void:
 	health_bar.max_value = hp;
 	health_bar.value = hp;
-	hp_value.text = "Health: " + str(health_bar.value);
+	hp_value.text = str(health_bar.value) + "/" + str(maxHp);
 	player_turn_ended.connect(end_turn)
 	print("player loaded");
 
 func _physics_process(delta: float) -> void:
 	health_bar.value = hp;
-	hp_value.text = "Health: " + str(health_bar.value);
+	hp_value.text = str(health_bar.value) + "/" + str(maxHp);
 	if hp <= 0:
 		animation.play("death");
 		await get_tree().create_timer(3.0).timeout;

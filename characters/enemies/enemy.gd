@@ -32,19 +32,8 @@ func _ready() -> void:
 	print("enemy ready");
 	state = "chase";	
 
-func _on_death():
-	animation.play("death");
-	on_death.emit(self);
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	health_bar.value = hp;
-	if (hp <= 0):
-		await get_tree().create_timer(0.2).timeout;
-		_on_death();
-		queue_free();
-		print(self.name, "is dying...");
-	elif not GameManager.isPlayerTurn and isEnemyTurn:
+func act() -> void:
+	if not GameManager.isPlayerTurn and hp > 0:
 		print(name, "'s turn");
 		""" 
 			Movement will be based on these things:
@@ -59,6 +48,16 @@ func _physics_process(delta: float) -> void:
 			chase();
 		elif state == "sleep":
 			sleep();
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
+	health_bar.value = hp;
+	if (hp <= 0):
+		await get_tree().create_timer(0.2).timeout;
+		queue_free();
+		_on_death();
+		print(self.name, "is dying...");
 
 func calculate_movement(vectorMovement) -> void:
 	position = round(position + vectorMovement);
@@ -109,3 +108,7 @@ func attack() -> void:
 func end_turn():
 	isEnemyTurn = false;
 	enemy_turn_ended.emit();
+	
+func _on_death():
+	animation.play("death");
+	on_death.emit(self);
