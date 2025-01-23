@@ -17,6 +17,7 @@ var vectorMovement = Vector2.ZERO
 
 var level: int = 1;
 var energy: int = 100;
+var maxEnergy: int = 100;
 var hp: int = 100;
 var maxHp: int = 100;
 var atk: int = 5;
@@ -96,6 +97,7 @@ func improve_stats():
 	def += 5;
 	matk += 5;
 	mdef += 5;
+	energy += 10;
 	
 func pick_up_item(item): 
 	inventory.append(item)

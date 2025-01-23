@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmn301om2v7mg"]
+
+[ext_resource type="Script" path="res://ui/player_ui.gd" id="1_oede6"]
+[ext_resource type="Texture2D" uid="uid://b46468lxi2iqm" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_qo4a2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ve8w"]
+bg_color = Color(0.505344, 0.505344, 0.505344, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmvgl"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_ead01"]
+font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwgip"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5bgn"]
+bg_color = Color(0.0352941, 1, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_dmj38"]
+font_size = 8
+
+[node name="PlayerUI" type="GridContainer"]
+anchors_preset = -1
+anchor_right = 0.117
+anchor_bottom = 0.069
+offset_right = -80.784
+offset_bottom = -30.712
+theme_override_constants/h_separation = 25
+columns = 2
+script = ExtResource("1_oede6")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(12, 13)
+scale = Vector2(1.5, 1.38889)
+texture = ExtResource("2_qo4a2")
+region_enabled = true
+region_rect = Rect2(41, 39, 15, 18)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8ve8w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xmvgl")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/HealthBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -2.0
+offset_right = 124.0
+offset_bottom = 21.0
+text = "120/120"
+label_settings = SubResource("LabelSettings_ead01")
+
+[node name="EnergyBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uwgip")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i5bgn")
+value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/EnergyBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -1.0
+offset_right = 48.0
+offset_bottom = 22.0
+text = "100/100"
+label_settings = SubResource("LabelSettings_dmj38")

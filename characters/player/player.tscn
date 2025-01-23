@@ -223,7 +223,7 @@ script = ExtResource("1_ybfk1")
 position = Vector2(0.375002, -0.374999)
 scale = Vector2(0.9525, 0.8725)
 sprite_frames = SubResource("SpriteFrames_e8vx0")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

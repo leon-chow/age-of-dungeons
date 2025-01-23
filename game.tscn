@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://d4jatonc3k4uy"]
+[gd_scene load_steps=14 format=4 uid="uid://d4jatonc3k4uy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fnmkk"]
 [ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_sevbt"]
 [ext_resource type="PackedScene" uid="uid://dinm3rpc53hyv" path="res://characters/player/player.tscn" id="3_oxrbs"]
+[ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/player_ui.tscn" id="4_07jf6"]
 [ext_resource type="PackedScene" uid="uid://bx8pwtucjpfxg" path="res://characters/enemies/enemy1.tscn" id="4_t8o4l"]
 [ext_resource type="PackedScene" uid="uid://cnlqtxa62fffr" path="res://items/item.tscn" id="5_4btdl"]
 
@@ -197,11 +198,18 @@ rotation_smoothing_enabled = true
 [node name="Control" type="Control" parent="Player/Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -191.0
-offset_top = -106.0
-offset_right = -151.0
-offset_bottom = -66.0
 tooltip_text = "Test "
+
+[node name="PlayerUI" parent="Player/Camera2D/Control" instance=ExtResource("4_07jf6")]
+z_index = 1
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -189.0
+offset_top = -103.0
+offset_right = -114.0
+offset_bottom = -93.0
 
 [node name="Enemies" type="Node" parent="."]
 
