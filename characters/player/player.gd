@@ -25,6 +25,8 @@ var matk: int = 5;
 var mdef: int = 2;
 var playerExp: int = 0;
 var expRequiredToLevel: int = 20;
+var inventory: Array[String] = [];
+var bagSize: int = 20;
 
 func _ready() -> void:
 	health_bar.max_value = hp;
@@ -51,6 +53,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				if $RayCastLeft.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastLeft.get_collider());
+				elif $RayCastLeft.get_collider().get_parent().get_name() == "Items":
+					vectorMovement = Vector2(-GameManager.tileSize, 0);
+					calculate_movement(vectorMovement, delta);
 		elif Input.is_action_just_pressed("ui_right"): 
 			animation.flip_h = false;
 			if not $RayCastRight.is_colliding():
@@ -59,6 +64,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				if $RayCastRight.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastRight.get_collider())
+				elif $RayCastRight.get_collider().get_parent().get_name() == "Items":
+					vectorMovement = Vector2(GameManager.tileSize, 0);
+					calculate_movement(vectorMovement, delta);
 		elif Input.is_action_just_pressed("ui_down"):
 			if not $RayCastDown.is_colliding():
 				vectorMovement = Vector2(0, GameManager.tileSize);
@@ -73,7 +81,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				if $RayCastUp.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastUp.get_collider());
-					
+						
 func _on_level_up():
 	var levelUpAnimation = create_tween();
 	improve_stats();
@@ -88,6 +96,10 @@ func improve_stats():
 	def += 5;
 	matk += 5;
 	mdef += 5;
+	
+func pick_up_item(item): 
+	inventory.append(item)
+	print("inventory: ", inventory)
 
 func play_idle():
 	animation.play("idle");	
@@ -112,6 +124,10 @@ func end_turn():
 	GameManager.isPlayerTurn = false;
 	player_turn_ended.emit(false);
 
+func heal(value) -> void:
+	hp += value;
+	hp = min(hp, maxHp);
+	
 func attack(enemy) -> void:
 	animation.play("attack")
 	print("you are attacking ", enemy.name);

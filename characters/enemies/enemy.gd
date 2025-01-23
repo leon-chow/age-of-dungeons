@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.2).timeout;
 		queue_free();
 		_on_death();
-		print(self.name, "is dying...");
 
 func calculate_movement(vectorMovement) -> void:
 	position = round(position + vectorMovement);
