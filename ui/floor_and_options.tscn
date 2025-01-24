@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://6848u6l8wds0"]
+
+[ext_resource type="Script" path="res://ui/floor_and_options.gd" id="1_85t5f"]
+[ext_resource type="FontFile" uid="uid://d1jj2yt7qopd3" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_qjaxb"]
+[ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_omeh1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sav2n"]
+atlas = ExtResource("2_omeh1")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2s43"]
+
+[node name="FloorAndOptions" type="VBoxContainer"]
+offset_right = 55.0
+offset_bottom = 25.0
+script = ExtResource("1_85t5f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_sav2n")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_qjaxb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b2s43")
+text = "1
+"
+fit_content = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(25, 9)
+scale = Vector2(1.25, 1.4375)
+texture = ExtResource("2_omeh1")
+region_enabled = true
+region_rect = Rect2(144, 48, 16, 16)

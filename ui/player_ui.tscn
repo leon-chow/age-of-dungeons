@@ -11,7 +11,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmvgl"]
-bg_color = Color(1, 0, 0, 1)
+bg_color = Color(1, 0.278431, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -42,9 +42,9 @@ anchors_preset = -1
 anchor_right = 0.117
 anchor_bottom = 0.069
 offset_left = -1.0
-offset_top = 7.0
-offset_right = -2.78401
-offset_bottom = -21.712
+offset_top = 4.0
+offset_right = 2.21599
+offset_bottom = -11.712
 theme_override_constants/h_separation = 35
 theme_override_constants/v_separation = 0
 columns = 2
@@ -65,7 +65,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
-theme_override_constants/separation = 0
+theme_override_constants/separation = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2

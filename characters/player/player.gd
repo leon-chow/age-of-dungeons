@@ -32,13 +32,12 @@ var bagSize: int = 20;
 func _ready() -> void:
 	health_bar.max_value = hp;
 	health_bar.value = hp;
-	hp_value.text = str(health_bar.value) + "/" + str(maxHp);
 	player_turn_ended.connect(end_turn)
 	print("player loaded");
 
 func _physics_process(delta: float) -> void:
+	health_bar.max_value = maxHp;
 	health_bar.value = hp;
-	hp_value.text = str(health_bar.value) + "/" + str(maxHp);
 	if hp <= 0:
 		animation.play("death");
 		await get_tree().create_timer(3.0).timeout;
@@ -52,7 +51,7 @@ func _physics_process(delta: float) -> void:
 				vectorMovement = Vector2(-GameManager.tileSize, 0);
 				calculate_movement(vectorMovement, delta);
 			else:
-				if $RayCastLeft.get_collider().get_parent().get_name() == "Enemies":
+				if is_instance_valid($RayCastLeft.get_collider()) and $RayCastLeft.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastLeft.get_collider());
 				elif $RayCastLeft.get_collider().get_parent().get_name() == "Items":
 					vectorMovement = Vector2(-GameManager.tileSize, 0);
@@ -63,7 +62,7 @@ func _physics_process(delta: float) -> void:
 				vectorMovement = Vector2(GameManager.tileSize, 0);
 				calculate_movement(vectorMovement, delta);
 			else:
-				if $RayCastRight.get_collider().get_parent().get_name() == "Enemies":
+				if is_instance_valid($RayCastRight.get_collider()) and $RayCastRight.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastRight.get_collider())
 				elif $RayCastRight.get_collider().get_parent().get_name() == "Items":
 					vectorMovement = Vector2(GameManager.tileSize, 0);
@@ -73,14 +72,14 @@ func _physics_process(delta: float) -> void:
 				vectorMovement = Vector2(0, GameManager.tileSize);
 				calculate_movement(vectorMovement, delta);
 			else:
-				if $RayCastDown.get_collider().get_parent().get_name() == "Enemies":
+				if is_instance_valid($RayCastDown.get_collider()) and $RayCastDown.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastDown.get_collider())
 		elif Input.is_action_just_pressed("ui_up"):
 			if not $RayCastUp.is_colliding():
 				vectorMovement = Vector2(0, -GameManager.tileSize);
 				calculate_movement(vectorMovement, delta);
 			else:
-				if $RayCastUp.get_collider().get_parent().get_name() == "Enemies":
+				if is_instance_valid($RayCastUp.get_collider()) and $RayCastUp.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastUp.get_collider());
 						
 func _on_level_up():

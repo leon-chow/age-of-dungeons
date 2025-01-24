@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://d4jatonc3k4uy"]
+[gd_scene load_steps=16 format=4 uid="uid://d4jatonc3k4uy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fnmkk"]
 [ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_sevbt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/player_ui.tscn" id="4_07jf6"]
 [ext_resource type="PackedScene" uid="uid://bx8pwtucjpfxg" path="res://characters/enemies/enemy1.tscn" id="4_t8o4l"]
 [ext_resource type="PackedScene" uid="uid://cnlqtxa62fffr" path="res://items/item.tscn" id="5_4btdl"]
+[ext_resource type="PackedScene" uid="uid://6848u6l8wds0" path="res://UI/floor_and_options.tscn" id="6_1hsjn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jqenv"]
 
@@ -195,7 +196,6 @@ collision_visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_oxrbs")]
 position = Vector2(8, 10)
-collision_mask = 7
 safe_margin = 0.008
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -226,6 +226,16 @@ collision_layer = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="FloorAndOptions" parent="CanvasLayer" instance=ExtResource("6_1hsjn")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 1.0
+offset_right = -5.0
+offset_bottom = 41.0
+grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(150, 40)

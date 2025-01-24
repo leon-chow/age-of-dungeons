@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	print(body);
 	if body.name == "Player":
-		if player.inventory.size() < 20:
+		if player.inventory.size() < player.bagSize:
 			player.pick_up_item(self.name);
 			player.heal(20);
 			queue_free()
