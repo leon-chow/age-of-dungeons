@@ -18,7 +18,8 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_ead01"]
-font_size = 8
+line_spacing = 4.0
+font_size = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwgip"]
 corner_radius_top_left = 10
@@ -27,22 +28,25 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5bgn"]
-bg_color = Color(0.0352941, 1, 0, 1)
+bg_color = Color(0.0352941, 0.639216, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_dmj38"]
-font_size = 8
+font_size = 9
 
 [node name="PlayerUI" type="GridContainer"]
 anchors_preset = -1
 anchor_right = 0.117
 anchor_bottom = 0.069
-offset_right = -80.784
-offset_bottom = -30.712
-theme_override_constants/h_separation = 25
+offset_left = -1.0
+offset_top = 7.0
+offset_right = -2.78401
+offset_bottom = -21.712
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 0
 columns = 2
 script = ExtResource("1_oede6")
 
@@ -50,8 +54,8 @@ script = ExtResource("1_oede6")
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
-position = Vector2(12, 13)
-scale = Vector2(1.5, 1.38889)
+position = Vector2(15.875, 16.75)
+scale = Vector2(2.01667, 1.80556)
 texture = ExtResource("2_qo4a2")
 region_enabled = true
 region_rect = Rect2(41, 39, 15, 18)
@@ -60,7 +64,12 @@ region_rect = Rect2(41, 39, 15, 18)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
 
 [node name="HealthBar" type="ProgressBar" parent="VBoxContainer"]
 custom_minimum_size = Vector2(50, 8)
@@ -72,10 +81,10 @@ show_percentage = false
 
 [node name="Label" type="Label" parent="VBoxContainer/HealthBar"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = -2.0
-offset_right = 124.0
-offset_bottom = 21.0
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 96.0
+offset_bottom = 9.0
 text = "120/120"
 label_settings = SubResource("LabelSettings_ead01")
 
@@ -89,9 +98,9 @@ show_percentage = false
 
 [node name="Label" type="Label" parent="VBoxContainer/EnergyBar"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = -1.0
-offset_right = 48.0
-offset_bottom = 22.0
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 93.0
+offset_bottom = 20.0
 text = "100/100"
 label_settings = SubResource("LabelSettings_dmj38")

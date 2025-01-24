@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://d4jatonc3k4uy"]
+[gd_scene load_steps=15 format=4 uid="uid://d4jatonc3k4uy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fnmkk"]
 [ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_sevbt"]
@@ -174,6 +174,15 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_jqenv")
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_0jcoa")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo2ru"]
+bg_color = Color(0.588235, 0.294118, 0, 1)
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 10
+expand_margin_right = 10.0
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -186,6 +195,7 @@ collision_visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_oxrbs")]
 position = Vector2(8, 10)
+collision_mask = 7
 safe_margin = 0.008
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -194,22 +204,6 @@ zoom = Vector2(3, 3)
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
-
-[node name="Control" type="Control" parent="Player/Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-tooltip_text = "Test "
-
-[node name="PlayerUI" parent="Player/Camera2D/Control" instance=ExtResource("4_07jf6")]
-z_index = 1
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -189.0
-offset_top = -103.0
-offset_right = -114.0
-offset_bottom = -93.0
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -221,12 +215,27 @@ position = Vector2(40, 170)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("4_t8o4l")]
 position = Vector2(24, 170)
+safe_margin = 0.01
 
 [node name="Items" type="Node" parent="."]
 
 [node name="Item" parent="Items" instance=ExtResource("5_4btdl")]
 position = Vector2(56, 8)
 collision_layer = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(150, 40)
+offset_right = 100.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wo2ru")
+
+[node name="PlayerUI" parent="CanvasLayer/PanelContainer" instance=ExtResource("4_07jf6")]
+z_index = 1
+layout_mode = 2
 
 [connection signal="player_turn_ended" from="Player" to="GameManager" method="_on_player_turn_ended"]
 [connection signal="enemy_turn_ended" from="Enemies/Enemy" to="GameManager" method="_on_enemy_turn_ended"]

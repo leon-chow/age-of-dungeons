@@ -98,6 +98,7 @@ func improve_stats():
 	matk += 5;
 	mdef += 5;
 	energy += 10;
+	maxEnergy += 10;
 	
 func pick_up_item(item): 
 	inventory.append(item)

@@ -1,8 +1,10 @@
 extends GridContainer
 
+@onready var player: CharacterBody2D = $"../../../Player"
+
 @onready var health_bar: ProgressBar = $VBoxContainer/HealthBar
 @onready var energy_bar: ProgressBar = $VBoxContainer/EnergyBar
-@onready var player: CharacterBody2D = $"../../.."
+
 @onready var hp_label: Label = $VBoxContainer/HealthBar/Label
 @onready var energy_label: Label = $VBoxContainer/EnergyBar/Label
 
