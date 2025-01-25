@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dinm3rpc53hyv" path="res://characters/player/player.tscn" id="3_oxrbs"]
 [ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/player_ui.tscn" id="4_07jf6"]
 [ext_resource type="PackedScene" uid="uid://bx8pwtucjpfxg" path="res://characters/enemies/enemy1.tscn" id="4_t8o4l"]
-[ext_resource type="PackedScene" uid="uid://cnlqtxa62fffr" path="res://items/item.tscn" id="5_4btdl"]
+[ext_resource type="PackedScene" uid="uid://bpas4ooik65u2" path="res://items/item_1.tscn" id="5_qb42v"]
 [ext_resource type="PackedScene" uid="uid://6848u6l8wds0" path="res://ui/floor_and_options.tscn" id="6_1hsjn"]
 [ext_resource type="PackedScene" uid="uid://cpuis0ifcc10y" path="res://ui/bottom_left_ui.tscn" id="8_gls2d"]
 [ext_resource type="PackedScene" uid="uid://g1icmmjq2aqh" path="res://ui/bottom_right_ui.tscn" id="9_7hysp"]
@@ -221,9 +221,8 @@ safe_margin = 0.01
 
 [node name="Items" type="Node" parent="."]
 
-[node name="Item" parent="Items" instance=ExtResource("5_4btdl")]
-position = Vector2(56, 8)
-collision_layer = 2
+[node name="item1" parent="Items" instance=ExtResource("5_qb42v")]
+position = Vector2(70, 8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 scale = Vector2(2, 2)
@@ -266,10 +265,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -33.0
-offset_right = -26.0
-offset_bottom = -33.0
+offset_left = -27.0
+offset_top = -32.5
+offset_right = -27.0
+offset_bottom = -32.5
 
 [connection signal="player_turn_ended" from="Player" to="GameManager" method="_on_player_turn_ended"]
 [connection signal="enemy_turn_ended" from="Enemies/Enemy" to="GameManager" method="_on_enemy_turn_ended"]
@@ -278,3 +277,4 @@ offset_bottom = -33.0
 [connection signal="on_death" from="Enemies/Enemy2" to="GameManager" method="_on_enemy_killed"]
 [connection signal="enemy_turn_ended" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_turn_ended"]
 [connection signal="on_death" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_killed"]
+[connection signal="body_entered" from="Items/item1" to="Items/item1" method="_on_body_entered"]

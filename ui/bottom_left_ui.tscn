@@ -16,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 

@@ -20,13 +20,15 @@ var energy: int = 100;
 var maxEnergy: int = 100;
 var hp: int = 100;
 var maxHp: int = 100;
+var str: int = 10;
 var atk: int = 5;
 var def: int = 2;
 var matk: int = 5;
 var mdef: int = 2;
+var speed: int = 1;
 var playerExp: int = 0;
 var expRequiredToLevel: int = 20;
-var inventory: Array[String] = [];
+var inventory: Array[Item] = [];
 var bagSize: int = 20;
 
 func _ready() -> void:
@@ -99,8 +101,9 @@ func improve_stats():
 	energy += 10;
 	maxEnergy += 10;
 	
-func pick_up_item(item): 
-	inventory.append(item)
+func pick_up_item(item: Item): 
+	print(item);
+	inventory.append(item);
 	print("inventory: ", inventory)
 
 func play_idle():

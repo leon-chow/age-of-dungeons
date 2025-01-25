@@ -54,6 +54,7 @@ func act() -> void:
 func _physics_process(delta: float) -> void:
 	health_bar.value = hp;
 	if (hp <= 0):
+		animation.play("death");
 		await get_tree().create_timer(0.2).timeout;
 		queue_free();
 		_on_death();
@@ -109,5 +110,4 @@ func end_turn():
 	enemy_turn_ended.emit();
 	
 func _on_death():
-	animation.play("death");
 	on_death.emit(self);
