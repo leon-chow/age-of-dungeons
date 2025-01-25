@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://g1icmmjq2aqh"]
+
+[ext_resource type="Texture2D" uid="uid://35cbs6q08ulp" path="res://assets/sprites/all-assets-preview.png" id="1_nc1ow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_macga"]
+atlas = ExtResource("1_nc1ow")
+region = Rect2(496, 144, 16, 16)
+
+[node name="BottomRightUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Inventory" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_macga")
