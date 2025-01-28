@@ -1,10 +1,12 @@
 extends Button
 
 @onready var inventoryBtn: Button = $"."
+@onready var player: CharacterBody2D = $"../../Player";
 
 const cols = 4;
 const rows = 5;
 var slots = rows * cols;
+var items = [];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
