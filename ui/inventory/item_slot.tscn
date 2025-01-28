@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1o1nidjw4p8a"]
+
+[ext_resource type="Script" path="res://ui/inventory/item_slot.gd" id="1_4rsku"]
+[ext_resource type="Texture2D" uid="uid://35cbs6q08ulp" path="res://assets/sprites/all-assets-preview.png" id="1_hq5l5"]
+[ext_resource type="FontFile" uid="uid://d1jj2yt7qopd3" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_dylfg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg6qv"]
+atlas = ExtResource("1_hq5l5")
+region = Rect2(18, 243, 13, 11)
+
+[node name="ItemSlot" type="ColorRect" groups=["item_slot"]]
+custom_minimum_size = Vector2(18, 18)
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.2, 0.2, 0.2, 1)
+script = ExtResource("1_4rsku")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 17.0
+offset_bottom = 15.0
+texture = SubResource("AtlasTexture_sg6qv")
+stretch_mode = 3
+
+[node name="ItemQuantity" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 19.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_dylfg")
+theme_override_font_sizes/font_size = 8
+text = "1"
+horizontal_alignment = 2
