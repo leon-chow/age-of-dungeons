@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fnmkk"]
 [ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_sevbt"]
 [ext_resource type="PackedScene" uid="uid://dinm3rpc53hyv" path="res://characters/player/player.tscn" id="3_oxrbs"]
-[ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/player_ui.tscn" id="4_07jf6"]
-[ext_resource type="PackedScene" uid="uid://bx8pwtucjpfxg" path="res://characters/enemies/enemy1.tscn" id="4_t8o4l"]
-[ext_resource type="PackedScene" uid="uid://bpas4ooik65u2" path="res://items/item_1.tscn" id="5_qb42v"]
-[ext_resource type="PackedScene" uid="uid://6848u6l8wds0" path="res://ui/floor_and_options.tscn" id="6_1hsjn"]
-[ext_resource type="PackedScene" uid="uid://cpuis0ifcc10y" path="res://ui/bottom_left_ui.tscn" id="8_gls2d"]
-[ext_resource type="PackedScene" uid="uid://g1icmmjq2aqh" path="res://ui/bottom_right_ui.tscn" id="9_7hysp"]
-[ext_resource type="PackedScene" uid="uid://cu7dn28xf6x14" path="res://ui/inventory/inventory_window.tscn" id="10_bmkxq"]
+[ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/hud/top_left/player_ui.tscn" id="4_07jf6"]
+[ext_resource type="PackedScene" uid="uid://bx8pwtucjpfxg" path="res://characters/enemies/enemy_1/enemy1.tscn" id="4_t8o4l"]
+[ext_resource type="PackedScene" uid="uid://bpas4ooik65u2" path="res://items/item_1/item_1.tscn" id="5_qb42v"]
+[ext_resource type="PackedScene" uid="uid://6848u6l8wds0" path="res://ui/hud/top_right/floor_and_options.tscn" id="6_1hsjn"]
+[ext_resource type="PackedScene" uid="uid://cpuis0ifcc10y" path="res://ui/hud/bottom_left/bottom_left_ui.tscn" id="8_gls2d"]
+[ext_resource type="PackedScene" uid="uid://g1icmmjq2aqh" path="res://ui/hud/bottom_right/bottom_right_ui.tscn" id="9_7hysp"]
+[ext_resource type="PackedScene" uid="uid://cu7dn28xf6x14" path="res://ui/inventory/inventory_menu/inventory_menu.tscn" id="10_bmkxq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jqenv"]
 
@@ -245,7 +245,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_nv6wo")
 
-[node name="Inventory" parent="UI/CenterContainer" instance=ExtResource("10_bmkxq")]
+[node name="InventoryMenu" parent="UI/CenterContainer" instance=ExtResource("10_bmkxq")]
 layout_mode = 2
 
 [node name="FloorAndOptions" parent="UI" instance=ExtResource("6_1hsjn")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1o1nidjw4p8a"]
 
-[ext_resource type="Script" path="res://ui/inventory/item_slot.gd" id="1_4rsku"]
+[ext_resource type="Script" path="res://ui/inventory/item_slot/item_slot.gd" id="1_4rsku"]
 [ext_resource type="Texture2D" uid="uid://35cbs6q08ulp" path="res://assets/sprites/all-assets-preview.png" id="1_hq5l5"]
 [ext_resource type="FontFile" uid="uid://d1jj2yt7qopd3" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_dylfg"]
 
@@ -17,10 +17,8 @@ script = ExtResource("1_4rsku")
 
 [node name="ItemIcon" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 17.0
-offset_bottom = 15.0
+offset_right = 16.0
+offset_bottom = 16.0
 texture = SubResource("AtlasTexture_sg6qv")
 stretch_mode = 3
 

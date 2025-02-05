@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dmn301om2v7mg"]
 
-[ext_resource type="Script" path="res://ui/player_ui.gd" id="1_oede6"]
+[ext_resource type="Script" path="res://ui/hud/top_left/player_ui.gd" id="1_oede6"]
 [ext_resource type="Texture2D" uid="uid://b46468lxi2iqm" path="res://assets/sprites/Soldier & Orc/Soldier & Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_qo4a2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ve8w"]

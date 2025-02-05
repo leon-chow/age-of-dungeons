@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://qgtqn6mox7kh"]
+[gd_scene load_steps=6 format=3 uid="uid://6848u6l8wds0"]
 
-[ext_resource type="Script" path="res://ui/hud/top_right/floor_and_options.gd" id="1_egtov"]
+[ext_resource type="Script" path="res://ui/hud/top_right/floor_and_options.gd" id="1_85t5f"]
 [ext_resource type="FontFile" uid="uid://d1jj2yt7qopd3" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_qjaxb"]
 [ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_omeh1"]
 
@@ -17,7 +17,7 @@ anchor_right = 1.0
 offset_left = -55.0
 offset_bottom = 25.0
 grow_horizontal = 0
-script = ExtResource("1_egtov")
+script = ExtResource("1_85t5f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
