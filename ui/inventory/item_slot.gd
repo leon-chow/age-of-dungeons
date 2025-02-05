@@ -14,11 +14,11 @@ func _process(delta: float) -> void:
 
 func display_item(item):
 	if item:
-		item_icon.texture = load("res://assets/sprites/%s" % item.icon);
-		if item.stackable:
-			item_quantity.text = str(item.quantity)
-		else:
-			item_quantity.text = ""
+		var atlasTexture = AtlasTexture.new();
+		atlasTexture.atlas = item.itemTexture
+		atlasTexture.region = item.textureRegion;
+		item_icon.texture = atlasTexture;
+		item_quantity.text = "1";
 	else:
 		item_icon.texture = null;
 		item_quantity.text = "";

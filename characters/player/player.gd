@@ -102,8 +102,7 @@ func improve_stats():
 	energy += 10;
 	maxEnergy += 10;
 	
-func pick_up_item(item: Item): 
-	print(item);
+func pick_up_item(item): 
 	Inventory.add_item(itemCount, item);
 	itemCount += 1;
 	print("inventory: ", Inventory.items)

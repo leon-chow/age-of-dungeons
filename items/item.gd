@@ -16,6 +16,9 @@ var damage := 0;
 var consumable := true;
 var throwable := false; 
 var effect := "";
+var itemTexture = AtlasTexture;
+var textureRegion = Rect2();
+var quantity := 1;
 
 func _ready():
 	pass

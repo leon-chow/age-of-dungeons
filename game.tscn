@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d4jatonc3k4uy"]
+[gd_scene load_steps=20 format=4 uid="uid://d4jatonc3k4uy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fnmkk"]
 [ext_resource type="Texture2D" uid="uid://dnx200bls5a54" path="res://assets/sprites/world_tileset.png" id="2_sevbt"]
@@ -178,6 +178,8 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_jqenv")
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_0jcoa")
 
+[sub_resource type="Theme" id="Theme_nv6wo"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo2ru"]
 bg_color = Color(0.588235, 0.294118, 0, 1)
 border_width_top = 1
@@ -241,6 +243,7 @@ offset_right = -76.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_nv6wo")
 
 [node name="Inventory" parent="UI/CenterContainer" instance=ExtResource("10_bmkxq")]
 layout_mode = 2

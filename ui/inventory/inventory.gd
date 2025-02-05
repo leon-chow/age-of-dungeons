@@ -3,6 +3,8 @@ extends Button
 @onready var inventoryBtn: Button = $"."
 @onready var player: CharacterBody2D = $"../../Player";
 
+signal items_changed(indexes);
+
 const cols = 4;
 const rows = 5;
 var slots = rows * cols;
@@ -22,6 +24,7 @@ func inventory_button_pressed():
 func add_item(index, item):
 	var previous_item = items[index]
 	items[index] = item
+	print(items[index])
 	emit_signal("items_changed", [index])
 	return previous_item
 	
