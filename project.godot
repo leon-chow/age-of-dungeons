@@ -22,7 +22,9 @@ Inventory="*res://ui/inventory/inventory.gd"
 
 [display]
 
+window/size/initial_position_type=0
 window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 window/stretch/scale=1.12
 
 [rendering]

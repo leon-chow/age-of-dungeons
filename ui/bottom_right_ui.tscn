@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://g1icmmjq2aqh"]
+[gd_scene load_steps=5 format=3 uid="uid://g1icmmjq2aqh"]
 
+[ext_resource type="Script" path="res://ui/bottom_right_ui.gd" id="1_gk47q"]
 [ext_resource type="Texture2D" uid="uid://35cbs6q08ulp" path="res://assets/sprites/all-assets-preview.png" id="1_nc1ow"]
-[ext_resource type="Script" path="res://UI/inventory.gd" id="2_726th"]
+[ext_resource type="Script" path="res://ui/inventory/inventory.gd" id="2_726th"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_macga"]
 atlas = ExtResource("1_nc1ow")
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gk47q")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

@@ -8,22 +8,32 @@ const rows = 5;
 var slots = rows * cols;
 var items = [];
 
+signal toggle_inventory
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	inventoryBtn.pressed.connect(self._button_pressed)
+	inventoryBtn.pressed.connect(self.inventory_button_pressed)
+	for i in range(slots):
+		items.append({})
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-func _button_pressed():
-	print("Pressed!");
-	
+func inventory_button_pressed():
+	toggle_inventory.emit()
+
 func add_item(index, item):
-	pass
+	var previous_item = items[index]
+	items[index] = item
+	emit_signal("items_changed", [index])
+	return previous_item
 	
 func remove_item(index):
-	pass
+	var previous_item = items[index].duplicate()
+	items[index].clear()
+	emit_signal("items_changed", [index])
+	return previous_item
 	
 func set_item_quantity(index, amount):
-	pass
+	items[index].quantity += amount
+	if items[index].quantity <= 0:
+		remove_item(index)
+	else:
+		emit_signal("items_changed", [index])

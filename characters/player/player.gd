@@ -29,6 +29,7 @@ var speed: int = 1;
 var playerExp: int = 0;
 var expRequiredToLevel: int = 20;
 var inventory: Array[Item] = [];
+var itemCount := 0;
 var bagSize: int = 20;
 
 func _ready() -> void:
@@ -103,8 +104,9 @@ func improve_stats():
 	
 func pick_up_item(item: Item): 
 	print(item);
-	inventory.append(item);
-	print("inventory: ", inventory)
+	Inventory.add_item(itemCount, item);
+	itemCount += 1;
+	print("inventory: ", Inventory.items)
 
 func play_idle():
 	animation.play("idle");	

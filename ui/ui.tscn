@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://chknwqo0lbwll"]
+
+[ext_resource type="PackedScene" uid="uid://cpuis0ifcc10y" path="res://ui/bottom_left_ui.tscn" id="1_hlk4l"]
+[ext_resource type="PackedScene" uid="uid://6848u6l8wds0" path="res://ui/floor_and_options.tscn" id="2_7r5x4"]
+[ext_resource type="PackedScene" uid="uid://g1icmmjq2aqh" path="res://ui/bottom_right_ui.tscn" id="3_e87ge"]
+[ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/player_ui.tscn" id="4_7o73t"]
+
+[node name="UI" type="Node2D"]
+
+[node name="BottomLeftUI" parent="." instance=ExtResource("1_hlk4l")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 5.0
+offset_top = 253.0
+offset_right = 5.0
+offset_bottom = 253.0
+grow_horizontal = 1
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="FloorAndOptions" parent="." instance=ExtResource("2_7r5x4")]
+offset_left = 450.0
+offset_top = 6.0
+offset_right = 505.0
+offset_bottom = 43.0
+
+[node name="BottomRightUI" parent="." instance=ExtResource("3_e87ge")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = 475.0
+offset_top = 254.0
+offset_right = 475.0
+offset_bottom = 254.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerUI" parent="PanelContainer" instance=ExtResource("4_7o73t")]
+layout_mode = 2
