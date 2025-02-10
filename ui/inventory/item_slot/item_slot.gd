@@ -18,7 +18,7 @@ func display_item(item):
 		atlasTexture.atlas = item.itemTexture
 		atlasTexture.region = item.textureRegion;
 		item_icon.texture = atlasTexture;
-		item_quantity.text = "1";
+		item_quantity.text = str(item.quantity) if item.itemName != "test" else '';
 	else:
 		item_icon.texture = null;
 		item_quantity.text = "";

@@ -15,6 +15,7 @@ var speedIncrease := 0;
 var damage := 0;
 var consumable := true;
 var throwable := false; 
+var stackable := true;
 var effect := "";
 var itemTexture = AtlasTexture;
 var textureRegion = Rect2();
@@ -28,9 +29,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		if player.inventory.size() < player.bagSize:
+		# works for now, but may want to refactor
+		if player.itemCount < Inventory.slots and visible:
 			player.pick_up_item(self);
-			queue_free()
+			visible = false;
 		else:
 			print("Too many items!");
 	else:

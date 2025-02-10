@@ -103,9 +103,13 @@ func improve_stats():
 	maxEnergy += 10;
 	
 func pick_up_item(item): 
+	for i in Inventory.items.size():
+		if (Inventory.items[i] != null):
+			if (Inventory.items[i].itemName == item.itemName):
+				Inventory.set_item_quantity(i, 1)	
+				return;
 	Inventory.add_item(itemCount, item);
 	itemCount += 1;
-	print("inventory: ", Inventory.items)
 
 func play_idle():
 	animation.play("idle");	

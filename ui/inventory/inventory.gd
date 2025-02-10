@@ -16,7 +16,7 @@ signal toggle_inventory
 func _ready() -> void:
 	inventoryBtn.pressed.connect(self.inventory_button_pressed)
 	for i in range(slots):
-		items.append({})
+		items.append(Item.new());
 
 func inventory_button_pressed():
 	toggle_inventory.emit()
@@ -24,11 +24,11 @@ func inventory_button_pressed():
 func add_item(index, item):
 	var previous_item = items[index]
 	items[index] = item
-	print(items[index])
 	emit_signal("items_changed", [index])
 	return previous_item
 	
 func remove_item(index):
+	print("removing");
 	var previous_item = items[index].duplicate()
 	items[index].clear()
 	emit_signal("items_changed", [index])

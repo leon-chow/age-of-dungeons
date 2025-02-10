@@ -8,7 +8,7 @@ var movementLR: int = 0;
 func _ready() -> void:
 	self.hpRestoration = 20;
 	self.consumable = true;
-	self.itemName = "Fruit";
+	self.itemName = "Forbidden Fruit";
 	self.itemTexture = sprite_2d.texture;
 	self.textureRegion = sprite_2d.region_rect;
 	super();

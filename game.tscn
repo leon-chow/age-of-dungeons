@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dinm3rpc53hyv" path="res://characters/player/player.tscn" id="3_oxrbs"]
 [ext_resource type="PackedScene" uid="uid://dmn301om2v7mg" path="res://ui/hud/top_left/player_ui.tscn" id="4_07jf6"]
 [ext_resource type="PackedScene" uid="uid://bx8pwtucjpfxg" path="res://characters/enemies/enemy_1/enemy1.tscn" id="4_t8o4l"]
-[ext_resource type="PackedScene" uid="uid://bpas4ooik65u2" path="res://items/item_1/item_1.tscn" id="5_qb42v"]
+[ext_resource type="PackedScene" uid="uid://bpas4ooik65u2" path="res://items/consumables/food/item_1/item_1.tscn" id="5_qb42v"]
 [ext_resource type="PackedScene" uid="uid://6848u6l8wds0" path="res://ui/hud/top_right/floor_and_options.tscn" id="6_1hsjn"]
 [ext_resource type="PackedScene" uid="uid://cpuis0ifcc10y" path="res://ui/hud/bottom_left/bottom_left_ui.tscn" id="8_gls2d"]
 [ext_resource type="PackedScene" uid="uid://g1icmmjq2aqh" path="res://ui/hud/bottom_right/bottom_right_ui.tscn" id="9_7hysp"]
@@ -227,6 +227,12 @@ safe_margin = 0.01
 [node name="item1" parent="Items" instance=ExtResource("5_qb42v")]
 position = Vector2(70, 8)
 
+[node name="item2" parent="Items" instance=ExtResource("5_qb42v")]
+position = Vector2(102, 8)
+
+[node name="item3" parent="Items" instance=ExtResource("5_qb42v")]
+position = Vector2(120, 8)
+
 [node name="UI" type="CanvasLayer" parent="."]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
@@ -298,3 +304,5 @@ offset_bottom = -32.5
 [connection signal="enemy_turn_ended" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_turn_ended"]
 [connection signal="on_death" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_killed"]
 [connection signal="body_entered" from="Items/item1" to="Items/item1" method="_on_body_entered"]
+[connection signal="body_entered" from="Items/item2" to="Items/item2" method="_on_body_entered"]
+[connection signal="body_entered" from="Items/item3" to="Items/item3" method="_on_body_entered"]
