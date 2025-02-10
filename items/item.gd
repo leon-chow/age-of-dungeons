@@ -28,12 +28,13 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		# works for now, but may want to refactor
-		if player.itemCount < Inventory.slots and visible:
-			player.pick_up_item(self);
-			visible = false;
+	if visible:	
+		if body.name == "Player":
+			# works for now, but may want to refactor
+			if player.itemCount < Inventory.slots:
+				player.pick_up_item(self);
+				visible = false;
+			else:
+				print("Too many items!");
 		else:
-			print("Too many items!");
-	else:
-		print("Something else walked over")
+			print("Something else walked over")
