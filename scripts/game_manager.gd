@@ -1,7 +1,9 @@
 extends Node
 
-var isPlayerTurn = true;
+@onready var tooltip: ColorRect = $"../UI/Tooltip"
 @onready var player: CharacterBody2D = $"../Player"
+
+var isPlayerTurn = true;
 
 var turnCount: int = 1
 var tileSize: int = 16

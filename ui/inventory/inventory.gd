@@ -1,8 +1,6 @@
 extends Button
 
 @onready var inventoryBtn: Button = $"."
-@onready var player: CharacterBody2D = $"../../Player";
-@onready var inventory_menu: GridContainer = $UI/CenterContainer/InventoryMenu
 
 signal items_changed(indexes);
 signal toggle_inventory;
@@ -12,13 +10,14 @@ const cols = 4;
 const rows = 5;
 var slots = rows * cols;
 var items = [];
-var selected = 0;
+var selected = -1;
 var inventory_visible = false;
+var tooltip_visible = false;
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	inventoryBtn.pressed.connect(self.inventory_button_pressed)
+	
+	# Inventory slots
 	for i in range(slots):
 		items.append(Item.new());
 		
@@ -41,10 +40,12 @@ func add_item(index, item):
 func set_selected(new_selected):
 	var last_selected = selected;
 	selected = new_selected;
-	broadcast_signal([selected, last_selected])
-	
-func get_selected():
-	return items[selected];
+	if items[selected].name:
+		EventBus.tooltip_show.emit(items[selected], get_global_mouse_position());
+	else:
+		EventBus.tooltip_closed.emit();
+		
+	broadcast_signal([selected, last_selected]);
 	
 func remove_item(index):
 	print("removing");

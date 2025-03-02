@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/game_manager.gd"
 Inventory="*res://ui/inventory/inventory.gd"
+EventBus="*res://scripts/event_bus.gd"
 
 [display]
 

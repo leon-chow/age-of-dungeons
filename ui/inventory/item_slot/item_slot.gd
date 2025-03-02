@@ -33,6 +33,5 @@ func _on_itemSlot_gui_input(event, index):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if Inventory.inventory_visible == true:
-				print(index, Inventory.selected);
 				if index != Inventory.selected:
-					Inventory.set_selected(index); 
+					Inventory.set_selected(index);
