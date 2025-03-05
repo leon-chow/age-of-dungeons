@@ -13,6 +13,8 @@ func _ready() -> void:
 	self.mdef = 2;
 	self.speed = 5;
 	self.enemyExp = 10;
+	self.id = randi() % 10000000 + 1;
+	self.name = "Orc" + str(GameManager.enemySpawnCounter);
 	super();
 
 func _on_play_idle() -> void:

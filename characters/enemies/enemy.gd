@@ -18,6 +18,7 @@ var matk: int;
 var mdef: int;
 var speed: int;
 var enemyExp: int;
+var id: int
 
 @onready var animation: AnimatedSprite2D = $Animation;
 @onready var health_bar: ProgressBar = $HealthBar;
@@ -63,13 +64,16 @@ func _physics_process(delta: float) -> void:
 
 func calculate_movement(vectorMovement) -> void:
 	position = round(position + vectorMovement);
-	if vectorMovement.x == GameManager.tileSize:
-		animation.flip_h = false;
-	elif vectorMovement.x == -GameManager.tileSize:
-		animation.flip_h = true;
+	flip_vertically(vectorMovement);
 	GameManager.turnCount += 1;
 	move_and_slide();
 	end_turn();
+	
+func flip_vertically(vectorDifference):
+	if vectorDifference.x == GameManager.tileSize:
+		animation.flip_h = false;
+	elif vectorDifference.x == -GameManager.tileSize:
+		animation.flip_h = true;
 		
 func isAdjacent(vectorDiff: Vector2) -> bool:
 	return snappedi(abs(vectorDiff.x), GameManager.tileSize) <= GameManager.tileSize and snappedi(abs(vectorDiff.y), GameManager.tileSize) <= GameManager.tileSize;
@@ -78,6 +82,7 @@ func chase() -> void:
 	var vectorDiff = Vector2(player.global_position - self.global_position)
 	var vectorMovement = Vector2.ZERO;
 	if isAdjacent(vectorDiff):
+		flip_vertically(vectorDiff)
 		attack();
 	else:
 		# TODO: Figure out how to stop clipping, which may be taken care of by path finding, and then fix enemies from colliding diagonally with each other
