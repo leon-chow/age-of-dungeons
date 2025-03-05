@@ -22,10 +22,13 @@ var enemyExp: int;
 @onready var animation: AnimatedSprite2D = $Animation;
 @onready var health_bar: ProgressBar = $HealthBar;
 
-signal on_death(enemy);
+signal on_death(exp);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	spawn();
+	
+func spawn() -> void:
 	on_death.connect(_on_death)
 	health_bar.value = hp;
 	health_bar.max_value = hp;
@@ -56,7 +59,6 @@ func _physics_process(delta: float) -> void:
 	if (hp <= 0):
 		animation.play("death");
 		await get_tree().create_timer(0.2).timeout;
-		queue_free();
 		_on_death();
 
 func calculate_movement(vectorMovement) -> void:
@@ -110,4 +112,5 @@ func end_turn():
 	enemy_turn_ended.emit();
 	
 func _on_death():
-	on_death.emit(self);
+	on_death.emit(self.enemyExp);
+	queue_free();

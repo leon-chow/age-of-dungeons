@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 				if is_instance_valid($RayCastUp.get_collider()) and $RayCastUp.get_collider().get_parent().get_name() == "Enemies":
 					attack($RayCastUp.get_collider());
 						
-func _on_level_up():
+func on_level_up():
 	var levelUpAnimation = create_tween();
 	improve_stats();
 	self.playerExp -= expRequiredToLevel;
@@ -122,7 +122,7 @@ func gain_exp(expGained):
 	playerExp += expGained;
 	while (playerExp >= expRequiredToLevel):
 		print("Leveled up!")
-		_on_level_up();
+		on_level_up();
 		
 func calculate_movement(vectorMovement, delta: float) -> void:
 	position = round(position + vectorMovement);

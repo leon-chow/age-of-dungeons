@@ -215,13 +215,6 @@ rotation_smoothing_enabled = true
 [node name="Enemy" parent="Enemies" instance=ExtResource("4_t8o4l")]
 position = Vector2(8, 170)
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("4_t8o4l")]
-position = Vector2(40, 170)
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("4_t8o4l")]
-position = Vector2(24, 170)
-safe_margin = 0.01
-
 [node name="Items" type="Node" parent="."]
 
 [node name="item1" parent="Items" instance=ExtResource("5_qb42v")]
@@ -302,10 +295,6 @@ offset_bottom = -32.5
 [connection signal="player_turn_ended" from="Player" to="GameManager" method="_on_player_turn_ended"]
 [connection signal="enemy_turn_ended" from="Enemies/Enemy" to="GameManager" method="_on_enemy_turn_ended"]
 [connection signal="on_death" from="Enemies/Enemy" to="GameManager" method="_on_enemy_killed"]
-[connection signal="enemy_turn_ended" from="Enemies/Enemy2" to="GameManager" method="_on_enemy_turn_ended"]
-[connection signal="on_death" from="Enemies/Enemy2" to="GameManager" method="_on_enemy_killed"]
-[connection signal="enemy_turn_ended" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_turn_ended"]
-[connection signal="on_death" from="Enemies/Enemy3" to="GameManager" method="_on_enemy_killed"]
 [connection signal="body_entered" from="Items/item1" to="Items/item1" method="_on_body_entered"]
 [connection signal="body_entered" from="Items/item2" to="Items/item2" method="_on_body_entered"]
 [connection signal="body_entered" from="Items/item3" to="Items/item3" method="_on_body_entered"]
